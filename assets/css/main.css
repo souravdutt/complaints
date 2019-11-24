@@ -1,0 +1,123 @@
+/* GLOABALS */
+*{
+    margin:0;padding:0;
+    box-sizing:border-box;
+    font-size: 1em;
+    font-family: calibri;
+}
+
+button{
+    border:0;
+    height: 45px;
+    min-width:100px;
+    padding:10px;
+    font-weight: 600;
+    background: #3F51B5;
+    color:white;
+    transition: .5s;
+    cursor: pointer;    
+}
+button:hover{
+    color:#ffffff;
+    background: #2196F3;    
+}
+input, select{
+    border:0;
+    height: 45px;
+    padding:10px;
+    margin:0;
+    text-transform: capitalize;
+    margin-right: 5px;
+    transition: .5s;
+
+}
+/* END GLOABALS */
+
+
+
+.container{
+    width:100%;
+    height: 500px;
+    background-image: linear-gradient(to bottom right, #2196F3, #3F51B5);
+}
+.intro{
+    position: absolute;
+    left:50%;
+    top:8%;
+    transform: translate(-50%,-50%);
+    color:white;
+    font-size: 150%;
+    text-transform: capitalize;
+    text-align: center;
+    width: 80%;
+}
+.search_box{
+    position: absolute;
+    left:50%;
+    top:20%;
+    width:50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    font-size: 130%;
+    letter-spacing: 1px;
+    transition: 1s;
+    box-shadow: 0px 0px 100px black;
+}
+.search_box input{
+    position: absolute;
+    width:71%;
+    float: left;
+}
+.search_box input:hover, .search_box input:focus{
+    font-size: 120%;
+}
+.search_box button{
+    float: right;
+    margin:0;
+    width:30%;
+}
+.or{
+    color:white;
+    font-size: 150%;
+    font-weight: 500;
+    position: absolute;
+    transition: 1s;
+    top:30%;left:50%;
+    transform: translate(-50%,-50%);
+}
+.search_box2{
+    position: absolute;
+    top:50%;left:50%;
+    transform: translate(-50%,-50%);
+    color:white;
+    text-align: center;
+    font-size: 120%;
+    width:50%;
+    transition: .5s;
+}
+.search_box2 select,.search_box2 button{
+    width:100%;
+    margin: 5px 0;
+    cursor: pointer;
+}
+.search_box2 button{
+    box-shadow: 0px 0px 10px black;
+/*    border: 1px solid darkgray;*/
+}
+
+.page2{
+    height: 120vh;
+    background: black;
+}
+
+
+
+@media (max-width:720px){
+    .search_box, .search_box2{
+        width: 80%;
+    }
+    
+}
+
+
+
