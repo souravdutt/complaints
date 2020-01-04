@@ -5,22 +5,31 @@
     font-size: 1.02em;
     font-family: calibri;
 }
-
-button{
+html{
+    scroll-behavior: smooth;
+}
+a[class="white"]{
+    text-decoration: none;
+    color:white;
+}
+button, input[class="button"], input[type="submit"]{
     border:0;
     height: 45px;
     min-width:100px;
     padding:10px;
     font-weight: 600;
-    font-size: 120%;
+    font-size: 110%;
     background: #3F51B5;
     color:white;
     transition: .5s;
     cursor: pointer;    
 }
-button:hover{
+.button:hover, input[type="submit"]:hover{
     color:#ffffff;
     background: #2196F3;    
+}
+.pointer{
+    cursor: pointer;
 }
 input, select{
     border:0;
@@ -40,7 +49,7 @@ input, select{
     width:100%;
     min-height: 600px;
     padding: 50px 0;
-    background-image: linear-gradient(to bottom right, #2196F3, #3F51B5);
+    background-image: linear-gradient(to bottom right, #3F51B5, #2196F3);
 }
 .intro{
     position: relative;
@@ -77,16 +86,16 @@ input, select{
 .search_box .white_bg{
     background: white;
 }
-.search_box input{
-    width:68%;
+.search_box input[type="text"]{
+    width:100%;
 }
-.search_box input:hover, .search_box input:focus{
+.search_box input[type="text"]:hover, .search_box input[type="text"]:focus{
     font-size: 120%;
 }
-.search_box button{
+.search_box .button{
     float: right;
     margin:0;
-    width:30%;
+    width:100%;
 }
 .or{
     color:white;
@@ -107,12 +116,12 @@ input, select{
     transition: .5s;
 }
 */
-.search_box2 select,.search_box2 button{
+.search_box2 select,.search_box2 .button{
     width:100%;
     margin: 5px 0;
     cursor: pointer;
 }
-.select_opts button{
+.select_opts .button{
     box-shadow: 0px 0px 10px black;
     width: 100%;
     margin: 10px 0;
@@ -121,14 +130,89 @@ input, select{
     width: 100%;
     margin: 5px 0;
 }
-
 .page2{
-    height: 120vh;
-    background: black;
+    min-height: 80vh;
+    background-color:#e9e9e9;
+    color:black;
+    padding: 20px 5%;
+}
+.result_found{
+    background: #94da94;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    color:#124c12;
+    border-radius: 5px;
+    animation: fadeout 1s ease forwards;
+    animation-delay: 3s;
+}
+.result_not_found{
+    background: #ffa69f;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    color:#b10c00;
+    border-radius: 5px;
+    animation: fadeout 1s ease forwards;
+    animation-delay: 3s;
+}
+@keyframes fadeout{
+    from{
+        opacity: 1;
+        height: 40px;
+    }
+    to{
+        opacity: 0;
+        height: 0px;
+        padding: 0;
+    }
+}
+.page2 .result_list{
+    height:130px;
+    width: 80%;
+    margin: 10px auto;
+    background: linear-gradient(to top left, #3b9eff, #df69df);
+}
+.page2 .result_list ul li{
+    list-style-type: none;
+    float: left;
+    width:25%;
+    overflow: hidden;
+    height: 30px;
+    padding: 10px;
+}
+.page2 .result_list ul input{
+    text-transform: none;
+    height: auto;
+    height: 200%;
+    padding: 0 8px;
+    font-weight: 500;
+    color:black;
+    width:100%;
+}
+.page2 table{
+    width: 100%;
+}
+.page2 table th{
+    text-transform: uppercase;
+    font-size: 80%;
+}.page2 table th, .page2 table td{
+    border: 1px solid black;
+    text-align: center;
+    padding: 2px 5px;
+    margin:0;
+}
+.page2 table td{
+    margin:0;
+    font-size: 90%;
 }
 
 
-
+@media (max-width:1080px){
+    .page2 .result_list{
+        width:100%;
+    }
+}
 @media (max-width:720px){
     .container{
         min-height: 650px;
@@ -148,6 +232,21 @@ input, select{
         width: 100%;
         box-shadow: 0 0 5px black;
         margin: 10px 0;
+    }
+    .page2 .result_found, .page2 .result_not_found{
+        width: 100%;
+    }
+    .page2 table td, .page2 table th {
+        max-width: 50px;
+        font-size: 80%;
+        letter-spacing: -1px;
+    }
+    .page2 .result_list{
+        height:250px;
+        width: 100%;
+    }
+    .page2 .result_list ul li{
+        width:50%;
     }
 }
 
