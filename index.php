@@ -62,9 +62,9 @@
                         <select name="states" id="states">
                             <option value="0">---Select State---</option>
                             <option value="1">Punjab</option>
-                            <option value="2">USA</option>
-                            <option value="3">Russia</option>
-                            <option value="4">England</option>
+                            <option value="2">Himachal Pradesh</option>
+                            <option value="3">Bihar</option>
+                            <option value="4">Uttar Pradesh</option>
                         </select>
                         <?php
                             if(isset($_POST['search_result'])){
