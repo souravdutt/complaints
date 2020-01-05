@@ -191,7 +191,7 @@
                                 }
                             ?>
                             <div class="cell">
-                                <span>Facebook Link<small> (optional) </small></span>
+                                <span>Facebook Link</span>
                                 <input type="text" style="text-transform:lowercase" placeholder="Facebook Link" name="link1"
                                     <?php
                                         if(isset($_POST['link1']))
