@@ -8,6 +8,25 @@
 html{
     scroll-behavior: smooth;
 }
+.success{
+    background: #94da94;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    color:#124c12;
+    border-radius: 5px;
+    animation: fadeout 1s ease forwards;
+    animation-delay: 3s;
+}
+.error{
+    background: #ffa69f;
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+    color:#b10c00;
+    border-radius: 5px;
+}
+
 a[class="white"]{
     text-decoration: none;
     color:white;
@@ -124,9 +143,6 @@ input, select{
         width: 100%;
         box-shadow: 0 0 5px black;
         margin: 10px 0;
-    }
-    .page2 .result_found, .page2 .result_not_found{
-        width: 100%;
     }
     .page2 table td, .page2 table th {
         max-width: 50px;
