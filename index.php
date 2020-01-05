@@ -20,10 +20,10 @@
                 <div class="search_box">
                     <div class="white_bg">
                         <div style="width:75%; float:left;">
-                            <input type="text" placeholder="search here..." name="search">
+                            <input type="text" placeholder="search for State / District / City" name="search" autofocus>
                         </div>
                         <div style="width:25%; float:left;">
-                            <input type="submit" class="button" id="search_result" value="Search" name="search_result"/>
+                            <input type="submit" class="button" id="search_result" name="search_result" value="Search"/>
                         </div>
                     </div>
                 <br>
