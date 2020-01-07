@@ -32,7 +32,7 @@
                                 <span>Country*</span>
                                 <select name="countries" id="countries" disabled>
                                     <option value="0">---Select Country---</option>
-                                    <option value="1" selected>India</option>
+                                    <option value="91" selected>India</option>
                                     <option value="2">USA</option>
                                     <option value="3">Russia</option>
                                     <option value="4">England</option>
@@ -42,7 +42,7 @@
                                 if(isset($_POST['submit_btn'])){
                                     
                                     #Till data available for India only
-                                    $_POST['countries'] = '1';
+                                    $_POST['countries'] = '91';
                                     if(!isset($_POST['countries']) || $_POST['countries'] == '0'){
                                         $error.=$error_sr.". Please select <b>Country</b>.<br>";
                                         $error_sr++;
@@ -111,6 +111,23 @@
                                 }
                             ?>
                             <div class="cell">
+                                <span>Pincode*</span>
+                                <input type="text" placeholder="Enter Pincode (6-digit)" name="pincode" minlength="6" maxlength="6"
+                                    <?php
+                                        if(isset($_POST['pincode']))
+                                            echo "value=\"".$_POST['pincode']."\"";
+                                    ?>
+                                />
+                            </div>
+                            <?php
+                                if(isset($_POST['submit_btn'])){
+                                    if($_POST['pincode'] == ''){
+                                        $error.=$error_sr.". Please enter valid <b>City Pincode</b>.<br>";
+                                        $error_sr++;
+                                    }
+                                }
+                            ?>
+                            <div class="cell">
                                 <span>Address*</span>
                                 <input type="text" placeholder="Enter Address" name="address" minlength="8"
                                     <?php
@@ -127,6 +144,9 @@
                                     }
                                 }
                             ?>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="cell">
                                 <span>Department Name*</span>
                                 <input type="text" placeholder="Department Name" name="department" minlength="3"
@@ -144,9 +164,6 @@
                                     }
                                 }
                             ?>
-                        </div>
-                        <br>
-                        <div class="row">
                             <div class="cell">
                                 <span>Officer Name/Desig.</span>
                                 <input type="text" placeholder="Officer Name / Designation" name="officer" minlength="3"
@@ -232,17 +249,55 @@
                         return false;
                     }
                     else{
-                        $country = $_POST['counties'];
+                        $country = $_POST['countries'];
                         $state = $_POST['states'];
-                        $country = $_POST['districts'];
+                        $district = $_POST['districts'];
                         $city = $_POST['city'];
+                        $pincode = $_POST['pincode'];
                         $address = $_POST['address'];
                         $department = $_POST['department'];
                         $officer = $_POST['officer'];
                         $mobile = $_POST['mobile'];
                         $email = $_POST['email'];
-                        $email = $_POST['link1'];
+                        $link1 = $_POST['link1'];
+                        $link2 = $_POST['link2'];
+                        $link3 = $_POST['link3'];
+                    
+                        $sel_country_tab_q = "SELECT country_name FROM country_list WHERE country_code = $country LIMIT 1";
+                        $sel_country_tab = mysqli_query($db_conn, $sel_country_tab_q);
+                        $get_country = mysqli_fetch_array($sel_country_tab);
+                        $country_name = $get_country['country_name'];
+                        
+                        $sel_state_tab_q = "SELECT state_name FROM state_list WHERE country_code = $country AND state_code = $state LIMIT 1";
+                        $sel_state_tab = mysqli_query($db_conn, $sel_state_tab_q);
+                        $get_state = mysqli_fetch_array($sel_state_tab);
+                        $state_name = $get_state['state_name'];
 
+                        $sel_district_tab_q = "SELECT district_name FROM district_list WHERE country_code = $country AND state_code = $state AND district_code = $district LIMIT 1";
+                        $sel_district_tab = mysqli_query($db_conn, $sel_district_tab_q);
+                        $get_district = mysqli_fetch_array($sel_district_tab);
+                        $district_name = $get_district['district_name'];
+                        
+                        $insert_q = "INSERT INTO `complaint_list`
+                        (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','','$link1','$link2','$link3')";
+                        
+                        $insert = mysqli_query($db_conn, $insert_q);
+                        
+                        echo "<div class='success' style='width:100%;'><b>Congrats!</b> Data has been saved successfuly.</div>";
+
+                        $_POST['countries'] = '';
+                        $_POST['states'] = '';
+                        $_POST['districts'] = '';
+                        $_POST['city'] = '';
+                        $_POST['pincode'] = '';
+                        $_POST['address'] = '';
+                        $_POST['department'] = '';
+                        $_POST['officer'] = '';
+                        $_POST['mobile'] = '';
+                        $_POST['email'] = '';
+                        $_POST['link1'] = '';
+                        $_POST['link2'] = '';
+                        $_POST['link3'] = '';
                     }
                 }
             ?>
