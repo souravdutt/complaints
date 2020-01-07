@@ -86,7 +86,7 @@ input, select{
 }
 .row span{
     color: white;
-    height: 20px;
+    font-size: 90%;
     overflow: hidden;
 }
 .find_center{
