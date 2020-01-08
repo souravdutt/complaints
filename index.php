@@ -8,7 +8,7 @@
             </p>
             <br>
             <br>
-            <form action="#result_page" method="POST">
+            <form action="#result_page" method="POST" id="get_form">
                 <?php
                     if(isset($_POST['search_result'])){
                         if(!isset($_POST['search']) || empty($_POST['search'] || ($_POST['states'] != '0' && $_POST['districts'] != '0' )))
@@ -59,13 +59,31 @@
                                          </div>';
                             }
                         ?>
-                        <select name="states" id="states">
+                        <?php #get state list from database:
+                            $sel_state_tab_q = "SELECT * FROM state";
+                            $sel_state_tab = mysqli_query($db_conn, $sel_state_tab_q);
+                            $get_state_row = mysqli_num_rows($sel_state_tab);
+                        ?>
+                        <select name="states" id="states" >
                             <option value="0">---Select State---</option>
-                            <option value="1">Punjab</option>
-                            <option value="2">Himachal Pradesh</option>
-                            <option value="3">Bihar</option>
-                            <option value="4">Uttar Pradesh</option>
+                            <?php
+                                if($get_state_row > 1){
+                                    while($get_state = mysqli_fetch_array($sel_state_tab)){
+                                        echo "<option value='".$get_state['StCode']."'";
+                                        if(isset($state) && $state == $get_state['StCode']) echo "selected";
+                                        echo "> ".$get_state['StateName']."</option>";
+                                    }
+                                }
+                            ?>
                         </select>
+                        <script>
+                            $(document).ready(function(){
+                                $('#states').change(function(){
+                                    $('#get_form').submit();    
+                                });
+
+                            })
+                        </script>
                         <?php
                             if(isset($_POST['search_result'])){
                                 if((!isset($_POST['districts']) || $_POST['districts'] == '0') && ($_POST['countries'] != '0' && $_POST['states'] != '0' ))
@@ -74,12 +92,25 @@
                                          </div>';
                             }
                         ?>
+
+                        <?php #get district list from database:
+                            if(isset($state)){
+                                $sel_dist_tab_q = "SELECT * FROM district WHERE StCode = '$state'";
+                                $sel_dist_tab = mysqli_query($db_conn, $sel_dist_tab_q);
+                                $get_dist_row = mysqli_num_rows($sel_dist_tab);
+                            }
+                        ?>
                         <select name="districts" id="districts">
                             <option value="0">---Select District---</option>
-                            <option value="148001">Sangrur</option>
-                            <option value="147001">Patiala</option>
-                            <option value="3">Bathinda</option>
-                            <option value="4">Amritsar</option>
+                            <?php
+                                if($get_dist_row > 1 && isset($state)){
+                                    while($get_dist = mysqli_fetch_array($sel_dist_tab)){
+                                        echo "<option value='".$get_dist['DistCode']."'";
+                                        if(isset($district) && $district == $get_dist['DistCode']) echo "selected";
+                                        echo "> ".$get_dist['DistrictName']."</option>";
+                                    }
+                                }
+                            ?>
                         </select>
                         <input type="submit" class="button" id="search_result" value="Search" name="search_result"/>
                     </div>

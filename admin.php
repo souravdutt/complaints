@@ -8,7 +8,7 @@
     <title>Search Complaint Numbers</title>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="shortcut" href="assets/images/icon/title.png">
-    <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
         <div class="container" style="width:100%; overflow-x: hidden;">
@@ -19,7 +19,7 @@
             </p>
             <br>
             <br>
-            <form action="" method="POST">
+            <form action="" method="POST" id="add_form" autocomplete="off">
                 <div class="search_box">
                     <div class="select_opts">
                         <div class="row">
@@ -49,18 +49,37 @@
                                     }
                                 }
                             ?>
+                            
+                            <?php #get state list from database:
+                                $sel_state_tab_q = "SELECT * FROM state";
+                                $sel_state_tab = mysqli_query($db_conn, $sel_state_tab_q);
+                                $get_state_row = mysqli_num_rows($sel_state_tab);
+                            ?>
                             <div class="cell">
                                 <span>State*</span>
-                                <select name="states" id="states">
+                                <select name="states" id="states" onChange="getdistrict(this.value);">
                                     <?php
                                         if(isset($_POST['states']) && $_POST['states'] != '0')
                                             $state = $_POST['states'];
                                     ?>
                                     <option value="0">---Select State---</option>
-                                    <option value="1" <?php if(isset($state) && $state=="1") echo"selected";?> >Punjab</option>
-                                    <option value="2" <?php if(isset($state) && $state=="2") echo"selected";?> >Himachal Pradesh</option>
-                                    <option value="3" <?php if(isset($state) && $state=="3") echo"selected";?> >Bihar</option>
-                                    <option value="4" <?php if(isset($state) && $state=="4") echo"selected";?> >Uttar Pradesh</option>
+                                    <?php
+                                        if($get_state_row > 1){
+                                            while($get_state = mysqli_fetch_array($sel_state_tab)){
+                                                echo "<option value='".$get_state['StCode']."'";
+                                                if(isset($state) && $state == $get_state['StCode']) echo "selected";
+                                                echo "> ".$get_state['StateName']."</option>";
+                                            }
+                                        }
+                                    ?>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#states').change(function(){
+                                                $('#add_form').submit();    
+                                            });
+                                            
+                                        })
+                                    </script>
                                 </select>
                             </div>
                             <?php
@@ -71,18 +90,37 @@
                                     }
                                 }
                             ?>
+
+                            <?php #get district list from database:
+                                if(isset($state)){
+                                    $sel_dist_tab_q = "SELECT * FROM district WHERE StCode = '$state'";
+                                    $sel_dist_tab = mysqli_query($db_conn, $sel_dist_tab_q);
+                                    $get_dist_row = mysqli_num_rows($sel_dist_tab);
+                                }
+                            ?>
                             <div class="cell">
                                 <span>District*</span>
-                                <select name="districts" id="districts">
+                                <select name="districts" id="district-list">
                                     <?php
                                         if(isset($_POST['districts']) && $_POST['districts'] != '0')
                                             $district = $_POST['districts'];
                                     ?>
                                     <option value="0">---Select District---</option>
-                                    <option value="148001" <?php if(isset($district) && $district=="148001") echo"selected";?> >Sangrur</option>
-                                    <option value="147001" <?php if(isset($district) && $district=="147001") echo"selected";?> >Patiala</option>
-                                    <option value="3" <?php if(isset($district) && $district=="3") echo"selected";?> >Bathinda</option>
-                                    <option value="4" <?php if(isset($district) && $district=="4") echo"selected";?> >Amritsar</option>
+                                    <?php
+                                        if($get_dist_row > 1 && isset($state)){
+                                            while($get_dist = mysqli_fetch_array($sel_dist_tab)){
+                                                echo "<option value='".$get_dist['DistCode']."'";
+                                                if(isset($district) && $district == $get_dist['DistCode']) echo "selected";
+                                                echo "> ".$get_dist['DistrictName']."</option>";
+                                            }
+                                        }
+                                    ?>
+<!--
+                                    <option value="148001" <?php #if(isset($district) && $district=="148001") echo"selected";?> >Sangrur</option>
+                                    <option value="147001" <?php #if(isset($district) && $district=="147001") echo"selected";?> >Patiala</option>
+                                    <option value="3" <?php #if(isset($district) && $district=="3") echo"selected";?> >Bathinda</option>
+                                    <option value="4" <?php #if(isset($district) && $district=="4") echo"selected";?> >Amritsar</option>
+-->
                                 </select>
                             </div>
                             <?php
@@ -144,9 +182,6 @@
                                     }
                                 }
                             ?>
-                        </div>
-                        <br>
-                        <div class="row">
                             <div class="cell">
                                 <span>Department Name*</span>
                                 <input type="text" placeholder="Department Name" name="department" minlength="3"
@@ -164,6 +199,9 @@
                                     }
                                 }
                             ?>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="cell">
                                 <span>Officer Name/Desig.</span>
                                 <input type="text" placeholder="Officer Name / Designation" name="officer" minlength="3"
@@ -208,6 +246,15 @@
                                 }
                             ?>
                             <div class="cell">
+                                <span>Official Website</span>
+                                <input type="text" placeholder="Official Website" name="website" minlength="10"
+                                    <?php
+                                        if(isset($_POST['website']))
+                                            echo "value=\"".$_POST['website']."\"";
+                                    ?>
+                                />
+                            </div>
+                            <div class="cell">
                                 <span>Facebook Link</span>
                                 <input type="text" style="text-transform:lowercase" placeholder="Facebook Link" name="link1"
                                     <?php
@@ -236,7 +283,7 @@
                             </div>
                         </div>
                         <br>
-                        <input type="submit" class="button" id="search_result" value="Add" name="submit_btn"/>
+                        <input type="submit" class="button" id="submit_btn" value="Add" name="submit_btn"/>
                     </div>
                 </div>
             </form>
@@ -268,15 +315,15 @@
                         $get_country = mysqli_fetch_array($sel_country_tab);
                         $country_name = $get_country['country_name'];
                         
-                        $sel_state_tab_q = "SELECT state_name FROM state_list WHERE country_code = $country AND state_code = $state LIMIT 1";
+                        $sel_state_tab_q = "SELECT StateName FROM state WHERE StCode = $state LIMIT 1";
                         $sel_state_tab = mysqli_query($db_conn, $sel_state_tab_q);
                         $get_state = mysqli_fetch_array($sel_state_tab);
-                        $state_name = $get_state['state_name'];
+                        $state_name = $get_state['StateName'];
 
-                        $sel_district_tab_q = "SELECT district_name FROM district_list WHERE country_code = $country AND state_code = $state AND district_code = $district LIMIT 1";
+                        $sel_district_tab_q = "SELECT DistrictName FROM district WHERE StCode = $state AND DistCode = $district LIMIT 1";
                         $sel_district_tab = mysqli_query($db_conn, $sel_district_tab_q);
                         $get_district = mysqli_fetch_array($sel_district_tab);
-                        $district_name = $get_district['district_name'];
+                        $district_name = $get_district['DistrictName'];
                         
                         $insert_q = "INSERT INTO `complaint_list`
                         (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','','$link1','$link2','$link3')";
@@ -304,5 +351,4 @@
 
         </div>
     </div>
-
 </body>
