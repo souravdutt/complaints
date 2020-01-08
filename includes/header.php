@@ -9,6 +9,6 @@
     <title>Search Complaint Numbers</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="shortcut" href="assets/images/icon/title.png">
-    <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
