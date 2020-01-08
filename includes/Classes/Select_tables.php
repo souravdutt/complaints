@@ -11,7 +11,7 @@
         public function sel_comp_table($search, $state, $district){
             $table_name = "complaint_list";
             if($search != '')
-                $que_sel_table = "SELECT * FROM $table_name WHERE state LIKE '%$search%' OR distt LIKE '%$search%' OR city LIKE '%$search%'";
+                $que_sel_table = "SELECT * FROM $table_name WHERE state LIKE '%$search%' OR distt LIKE '%$search%' OR city LIKE '%$search%' OR department LIKE '%$search%'";
             else
                 $que_sel_table = "SELECT * FROM $table_name WHERE state_code = $state AND distt_code = $district";
             
