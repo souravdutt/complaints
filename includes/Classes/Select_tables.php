@@ -63,7 +63,11 @@
                                 </ul>
                                 <ul>
                                     <li>Social Links</li>
-                                    <li><input type="text" value="-N-A-" disabled></li>
+                                    <li>
+                                        <a target="_blank" href="'.$get_data['social_1'].'"><img src="assets/images/icon/fb_logo.png"></a>
+                                        <a target="_blank" href="'.$get_data['social_2'].'"><img src="assets/images/icon/twitter_logo.png"></a>
+                                        <a target="_blank" href="'.$get_data['social_3'].'"><img src="assets/images/icon/linkedin_logo.png"></a>
+                                    </li>
                                 </ul>
                             </div>';
                     $sr++;
