@@ -14,6 +14,7 @@
     }
     $que_sel_tab_count = "SELECT * FROM 'country_list'";
     $sel_tab_count = mysqli_query($db_conn, $que_sel_tab_count);
-
+    
+    session_start();
 
 ?>
