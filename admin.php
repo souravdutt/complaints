@@ -247,7 +247,7 @@
                             ?>
                             <div class="cell">
                                 <span>Official Website</span>
-                                <input type="text" placeholder="Official Website" name="website" minlength="10"
+                                <input type="text" style="text-transform:lowercase" placeholder="Official Website" name="website" minlength="10"
                                     <?php
                                         if(isset($_POST['website']))
                                             echo "value=\"".$_POST['website']."\"";
@@ -306,6 +306,7 @@
                         $officer = $_POST['officer'];
                         $mobile = $_POST['mobile'];
                         $email = $_POST['email'];
+                        $website = $_POST['website'];
                         $link1 = $_POST['link1'];
                         $link2 = $_POST['link2'];
                         $link3 = $_POST['link3'];
@@ -326,7 +327,7 @@
                         $district_name = $get_district['DistrictName'];
                         
                         $insert_q = "INSERT INTO `complaint_list`
-                        (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','','$link1','$link2','$link3')";
+                        (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','$website','$link1','$link2','$link3')";
                         
                         $insert = mysqli_query($db_conn, $insert_q);
                         

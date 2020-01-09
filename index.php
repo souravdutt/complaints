@@ -59,8 +59,12 @@
                                          </div>';
                             }
                         ?>
+                        <?php
+                            if(isset($_POST['states']) && $_POST['states'] != '0')
+                                $state = $_POST['states'];
+                        ?>
                         <?php #get state list from database:
-                            $sel_state_tab_q = "SELECT * FROM state";
+                            $sel_state_tab_q = "SELECT * FROM state ORDER BY StateName ASC";
                             $sel_state_tab = mysqli_query($db_conn, $sel_state_tab_q);
                             $get_state_row = mysqli_num_rows($sel_state_tab);
                         ?>
@@ -70,7 +74,8 @@
                                 if($get_state_row > 1){
                                     while($get_state = mysqli_fetch_array($sel_state_tab)){
                                         echo "<option value='".$get_state['StCode']."'";
-                                        if(isset($state) && $state == $get_state['StCode']) echo "selected";
+                                        if(isset($state) && $state == $get_state['StCode'])
+                                            echo "selected ";
                                         echo "> ".$get_state['StateName']."</option>";
                                     }
                                 }
@@ -92,10 +97,14 @@
                                          </div>';
                             }
                         ?>
+                        <?php
+                            if(isset($_POST['districts']) && $_POST['districts'] != '0')
+                                $district = $_POST['districts'];
+                        ?>
 
                         <?php #get district list from database:
                             if(isset($state)){
-                                $sel_dist_tab_q = "SELECT * FROM district WHERE StCode = '$state'";
+                                $sel_dist_tab_q = "SELECT * FROM district WHERE StCode = '$state' ORDER BY DistrictName ASC";
                                 $sel_dist_tab = mysqli_query($db_conn, $sel_dist_tab_q);
                                 $get_dist_row = mysqli_num_rows($sel_dist_tab);
                             }
@@ -106,7 +115,8 @@
                                 if($get_dist_row > 1 && isset($state)){
                                     while($get_dist = mysqli_fetch_array($sel_dist_tab)){
                                         echo "<option value='".$get_dist['DistCode']."'";
-                                        if(isset($district) && $district == $get_dist['DistCode']) echo "selected";
+                                        if(isset($district) && $district == $get_dist['DistCode'])
+                                            echo "selected ";
                                         echo "> ".$get_dist['DistrictName']."</option>";
                                     }
                                 }
@@ -124,6 +134,7 @@
                 $search = $_POST['search'];
                 $state = $_POST['states'];
                 $district = $_POST['districts'];
+                                
                 $sel_tab_obj = new Select_tables($db_conn);
                 $sel_tab_obj->sel_comp_table($search, $state, $district);
             }
@@ -136,9 +147,9 @@
 
 
     <script>
-        $(document).ready(function()){
-            $('#search_result').onclick(function(){
-                document.location.href = "index/#result_page";
-            });
-        }
+//        $(document).ready(function()){
+//            $('#search_result').onclick(function(){
+//                document.location.href = "index/#result_page";
+//            });
+//        }
     </script>
