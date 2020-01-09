@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2020 at 11:18 AM
+-- Generation Time: Jan 09, 2020 at 11:05 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -44,10 +44,10 @@ CREATE TABLE `complaint_list` (
   `officer` varchar(30) NOT NULL,
   `mobile` varchar(12) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `website` varchar(30) NOT NULL,
-  `social_1` varchar(30) NOT NULL,
-  `social_2` varchar(30) NOT NULL,
-  `social_3` varchar(30) NOT NULL
+  `website` varchar(50) NOT NULL,
+  `social_1` varchar(100) NOT NULL,
+  `social_2` varchar(100) NOT NULL,
+  `social_3` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -67,7 +67,8 @@ INSERT INTO `complaint_list` (`id`, `country_code`, `country`, `state_code`, `st
 (10, 91, 'india', 1, 'punjab', 148001, 'sangrur', 148023, 'malerkotla', 0, 'employment exchange', 'thandi sarak', 'n.a.', '9786542310', 'email@email.com', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
 (11, 91, 'india', 28, '', 438, '', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
 (12, 91, 'india', 28, '', 438, '', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
-(13, 91, 'india', 28, 'Punjab', 438, 'Amritsar', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com');
+(13, 91, 'india', 28, 'Punjab', 438, 'Amritsar', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
+(14, 91, 'india', 32, 'Telangana', 530, 'Hyderabad', 500084, 'Kondapur', 0, 'google', 'Survey No. 13, DivyaSree Omega, Kondapur Village', 'n.a.', '4066193000', 'info@google.com', 'www.google.co.in', 'https://www.facebook.com/Googleindia', 'https://twitter.com/googleindia', 'https://in.linkedin.com/company/google');
 
 -- --------------------------------------------------------
 
@@ -898,7 +899,7 @@ ALTER TABLE `state_list`
 -- AUTO_INCREMENT for table `complaint_list`
 --
 ALTER TABLE `complaint_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `country_list`
