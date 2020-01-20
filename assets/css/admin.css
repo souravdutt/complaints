@@ -56,6 +56,9 @@ input, select{
     margin-right: 5px;
     transition: .5s;
 }
+input[type="email"]{
+    text-transform: lowercase;
+}
 /* END GLOABALS */
 
 
