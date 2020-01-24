@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2020 at 11:05 AM
+-- Generation Time: Jan 24, 2020 at 03:28 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -68,7 +68,8 @@ INSERT INTO `complaint_list` (`id`, `country_code`, `country`, `state_code`, `st
 (11, 91, 'india', 28, '', 438, '', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
 (12, 91, 'india', 28, '', 438, '', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
 (13, 91, 'india', 28, 'Punjab', 438, 'Amritsar', 143001, 'amritsar', 0, 'esic', 'bus stand road', 'ravinder singh', '7355012139', 'ravindersingh@gmail', '', 'www.fb.com', 'twitter.com', 'linkdin.com'),
-(14, 91, 'india', 32, 'Telangana', 530, 'Hyderabad', 500084, 'Kondapur', 0, 'google', 'Survey No. 13, DivyaSree Omega, Kondapur Village', 'n.a.', '4066193000', 'info@google.com', 'www.google.co.in', 'https://www.facebook.com/Googleindia', 'https://twitter.com/googleindia', 'https://in.linkedin.com/company/google');
+(14, 91, 'india', 32, 'Telangana', 530, 'Hyderabad', 500084, 'Kondapur', 0, 'google', 'Survey No. 13, DivyaSree Omega, Kondapur Village', 'n.a.', '4066193000', 'info@google.com', 'www.google.co.in', 'https://www.facebook.com/Googleindia', 'https://twitter.com/googleindia', 'https://in.linkedin.com/company/google'),
+(15, 91, 'india', 35, 'Uttar Pradesh', 575, 'Gorakhpur', 273009, 'gorakhpur', 0, 'EPF Sub Regional Office', 'Opposite Carmel Girls School, Civil lines, Labour ', 'n.a.', '5512200603', 'sro.gorakhpur@epfindia.gov.in', 'epfindia.gov.in', 'https://www.facebook.com/socialepfo/', 'https://twitter.com/socialepfo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor', 'https://www.linkedin.com/company/employee%27s-provident-fund-organisation');
 
 -- --------------------------------------------------------
 
@@ -850,6 +851,37 @@ CREATE TABLE `state_list` (
 INSERT INTO `state_list` (`id`, `country_code`, `state_code`, `state_name`) VALUES
 (1, 91, 1, 'punjab');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitor_requests`
+--
+
+CREATE TABLE `visitor_requests` (
+  `id` int(11) NOT NULL,
+  `dep_name` varchar(30) NOT NULL,
+  `dep_add` varchar(90) NOT NULL,
+  `visitor_email` varchar(50) NOT NULL,
+  `visitor_mobile` varchar(15) NOT NULL,
+  `request_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `visitor_requests`
+--
+
+INSERT INTO `visitor_requests` (`id`, `dep_name`, `dep_add`, `visitor_email`, `visitor_mobile`, `request_status`) VALUES
+(1, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 1),
+(2, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 1),
+(3, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 1),
+(4, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 1),
+(5, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 0),
+(6, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 0),
+(7, 'epf office', 'bhatinda punjab', 'sdutt12139@gmail.com', '7355012139', 0),
+(8, 'epf office', 'bhatinda punjab', '', '', 0),
+(11, 'esi', 'chandigarh,', 'sdutt12139@gmail.com', '', 1),
+(12, 'esi offic', 'chandigarh, punjab', 'sdutt12139@gmail.com', '9876543210', 0);
+
 --
 -- Indexes for dumped tables
 --
@@ -892,6 +924,12 @@ ALTER TABLE `state_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `visitor_requests`
+--
+ALTER TABLE `visitor_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -899,7 +937,7 @@ ALTER TABLE `state_list`
 -- AUTO_INCREMENT for table `complaint_list`
 --
 ALTER TABLE `complaint_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `country_list`
@@ -930,6 +968,12 @@ ALTER TABLE `state`
 --
 ALTER TABLE `state_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `visitor_requests`
+--
+ALTER TABLE `visitor_requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
