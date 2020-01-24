@@ -12,7 +12,10 @@
 </head>
 <body>
         <div class="container" style="width:100%; overflow-x: hidden;">
-        <a href="index.php" target="_blank" style="color:white; position:absolute; top:10px; right:20px; font-size:110%;">Home</a>
+        <div style="position:absolute; top:10px; right:20px; font-size:120%; ">
+            <a href="index.php" target="_blank" style="color:white; margin: 0 10px;">Home</a>
+            <a href="requests.php" style="color:white; margin: 0 10px;">Requests</a>
+        </div>
         <div class="find_center">            
             <p class="intro">
                 Welcome, <b>Mr. Dutt!</b> Let's add some data to the database.

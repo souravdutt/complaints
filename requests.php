@@ -25,8 +25,8 @@
             <form action="" method="POST" id="add_form" autocomplete="off">
                 <div class="search_box">
                     <div class="select_opts">
-                        <div class="row">
-                            <div class="cell">
+                        <div class="row title_row" style="text-align:center;margin-bottom:10px; font-size:120%">
+                            <div class="cell" style="width:50%;">
                                 <span>Serial</span>
                             </div>
                             <div class="cell">
@@ -46,16 +46,20 @@
                             </div>
                         </div>
                         <?php
-                            $sel_visitor_tab_q = "SELECT * FROM visitor_requests ORDER BY id ASC";
+                            $sel_visitor_tab_q = "SELECT * FROM visitor_requests WHERE request_status=0 ORDER BY id ASC";
                             $sel_visitor_tab = mysqli_query($db_conn, $sel_visitor_tab_q);
                             $visitor_tab_row = mysqli_num_rows($sel_visitor_tab);
                             if($visitor_tab_row > 0){
+                                $sr = 1;
                                 while($get_data = mysqli_fetch_array($sel_visitor_tab)){
-                                    $sr = 1;
                                     echo '
+                                    <form>
                                     <div class="row">
-                                        <div class="cell">
-                                            <input type="text" placeholder="sr" name="serial" value="'.$sr.'" disabled/>
+                                        <div class="cell" style="width:50%;">
+                                            <input type="text" placeholder="sr" name="serial" value="'.$sr.'" style="text-align:center" disabled/>
+                                        </div>
+                                        <div class="cell" style="display:none">
+                                            <input type="number" name="req_id" value="'.$get_data["id"].'"/>
                                         </div>
                                         <div class="cell">
                                             <input type="email" name="visitor_email" value="'.$get_data["visitor_email"].'" disabled/>
@@ -69,11 +73,22 @@
                                         <div class="cell">
                                             <input type="text" name="dep_add" value="'.$get_data["dep_add"].'" disabled/>
                                         </div>
-                                        <div class="cell">
-                                            <button type="button" name="action">Action</button>
+                                        <div class="cell" style="padding:5px 0;">
+                                            <button type="submit" class="done_btn" name="done_btn" style="width:48.5%;background:#4caf50;">Done</button>
+                                            <button type="button" class="add_btn" name="add_btn" style="width:48.5%;">Add</button>
                                         </div>
-                                    </div>';
+                                    </div>
+                                    </form>';
+                                    $sr++;
                                 }
+                            }
+                            else{
+                                echo "<div class='error' style='width:80%;'><strong>Oh!</strong> no pending request found</div>";
+                            }
+                            if(isset($_REQUEST['done_btn'])){
+                                header("refresh:3");
+                                $update_req_table_q = "UPDATE visitor_requests SET request_status='1' WHERE id='".$_REQUEST['req_id']."'";
+                                $update_req_table = mysqli_query($db_conn, $update_req_table_q);
                             }
                         ?>
                     </div>
@@ -82,4 +97,11 @@
             <br>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.done_btn').click(function(){
+                $(this).parents('.row').slideUp();
+            });
+        });
+    </script>
 </body>
