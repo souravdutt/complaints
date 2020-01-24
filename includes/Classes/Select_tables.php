@@ -32,7 +32,7 @@
                                 <b>Congrats!</b> Following results are founded:
                             </div>';
                 while($get_data = mysqli_fetch_array($sel_table)){
-                    echo '<div class="result_list">
+                    echo '<div class="result_list" id="result_list">
                                 <ul>
                                     <li>Sr</li>
                                     <li><input type="text" value="'.$sr.'" disabled></li>
@@ -69,7 +69,14 @@
                                         <a target="_blank" href="'.$get_data['social_3'].'"><img src="assets/images/icon/linkedin_logo.png"></a>
                                     </li>
                                 </ul>
-                            </div>';
+                                <div class="report_toggler" style="text-align:right; padding:10px;"><span style="color:blue;cursor:pointer;text-decoration:underline;">Report</span></div>
+                                <form class="report_form">
+                                    <input type="text" class="issue_msg" placeholder="Enter issue..." style=""/>
+                                    <input type="email" placeholder="Your Email" style=""/>
+                                    <button type="submit" style="">Submit Issue</button>
+                                </form>
+                            </div>
+                            <hr style="width:80%; margin:auto;">';
                     $sr++;
                 }
                 echo '</div>';
