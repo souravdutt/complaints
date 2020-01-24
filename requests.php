@@ -1,6 +1,9 @@
 <?php
     require_once("includes/config/config.php");
 ?>
+<script>
+    window.setTimeout(document.requests.submit.bind(document.requests), 2000);
+</script>
 
 <html lang="en">
 <head>
@@ -16,9 +19,21 @@
             <a href="index.php" target="_blank" style="margin: 0 10px; color:white;">Home</a>
             <a href="admin.php" style="margin: 0 10px; color:white;">Add Data</a>
         </div>
+        <?php
+            $sel_visitor_tab_q = "SELECT * FROM visitor_requests WHERE request_status=0 ORDER BY id ASC";
+            $sel_visitor_tab = mysqli_query($db_conn, $sel_visitor_tab_q);
+            $visitor_tab_row = mysqli_num_rows($sel_visitor_tab);    
+        ?>
         <div class="find_center">            
             <p class="intro">
-                Here are 121 <b>Visitors Requests</b>, to add data for the perticular department.
+                <?php
+                    if($visitor_tab_row > 0)
+                        echo 'Here are '.$visitor_tab_row.' <b>Visitors Requests</b>, to add data for the perticular department.';
+                    else
+                        echo 'Here is 0 (zero) <b>Visitors Requests</b>, to add data for the perticular department.';
+                ?>
+                
+                
             </p>
             <br>
             <br>
@@ -46,14 +61,11 @@
                             </div>
                         </div>
                         <?php
-                            $sel_visitor_tab_q = "SELECT * FROM visitor_requests WHERE request_status=0 ORDER BY id ASC";
-                            $sel_visitor_tab = mysqli_query($db_conn, $sel_visitor_tab_q);
-                            $visitor_tab_row = mysqli_num_rows($sel_visitor_tab);
                             if($visitor_tab_row > 0){
                                 $sr = 1;
                                 while($get_data = mysqli_fetch_array($sel_visitor_tab)){
                                     echo '
-                                    <form>
+                                    <form name="requests" id="requests" action="requests.php" method="POST">
                                     <div class="row">
                                         <div class="cell" style="width:50%;">
                                             <input type="text" placeholder="sr" name="serial" value="'.$sr.'" style="text-align:center" disabled/>
@@ -86,7 +98,6 @@
                                 echo "<div class='error' style='width:80%;'><strong>Oh!</strong> no pending request found</div>";
                             }
                             if(isset($_REQUEST['done_btn'])){
-                                header("refresh:3");
                                 $update_req_table_q = "UPDATE visitor_requests SET request_status='1' WHERE id='".$_REQUEST['req_id']."'";
                                 $update_req_table = mysqli_query($db_conn, $update_req_table_q);
                             }
