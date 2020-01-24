@@ -24,9 +24,10 @@ button, input[class="button"], input[type="submit"]{
     transition: .5s;
     cursor: pointer;    
 }
-.button:hover, input[type="submit"]:hover{
+.button:hover, input[type="submit"]:hover, button:hover{
     color:#ffffff;
     background: #2196F3;    
+    border: 1px solid white;
 }
 .pointer{
     cursor: pointer;
@@ -41,15 +42,18 @@ input, select{
     transition: .5s;
 
 }
+input[type="email"]{
+    text-transform: lowercase;
+}
 /* END GLOABALS */
 
 
 
 .container{
     width:100%;
-    min-height: 600px;
-    padding: 50px 0;
-    background-image: linear-gradient(to bottom right, #3F51B5, #2196F3);
+    padding: 100px 0;
+    background: white linear-gradient(to bottom right, #3F51B5, #2196F3);
+    background-attachment:fixed;
 }
 .intro{
     position: relative;
@@ -98,11 +102,11 @@ input, select{
     width:100%;
 }
 .or{
+    display: block;
     color:white;
     text-align: center;
     font-size: 150%;
     font-weight: 500;
-    transition: 1s;
 }
 /*
 .search_box2{
@@ -161,7 +165,7 @@ input, select{
     color:#b10c00;
     border-radius: 5px;
     animation: fadeout 1s ease forwards;
-    animation-delay: 3s;
+    animation-delay: 10s;
 }
 @keyframes fadeout{
     from{
@@ -175,7 +179,6 @@ input, select{
     }
 }
 .page2 .result_list{
-    height:130px;
     width: 80%;
     margin: 10px auto;
     background: linear-gradient(to top left, #3b9eff, #df69df);
@@ -213,7 +216,69 @@ input, select{
     margin:0;
     font-size: 90%;
 }
+.report_form{
+    width:101%;
+    display: none;
+    padding: 5px;
+}
+.report_form input:first-child{
+    width: 43%;
+}
+.report_form input{
+    margin: 5px 0;
+    height: 40px;
+    width: 28%;
+}
+.report_form button{
+    width: 27%;
+    height:40px;
+    padding: 0px;
+}
 
+
+.page3{
+    width: 100%;
+    text-transform: capitalize;
+    background:floralwhite;
+}
+.page3 .container_page3{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background:floralwhite;
+    text-align: justify;
+}
+.page3 span, .page3 h1{
+    font-size: 150%;
+}
+.page3 form{
+    width: 100%;
+    font-size: 120%;
+    padding: 20px;
+    display: block;
+    background: white linear-gradient(to bottom right, #3F51B5, #2196F3);
+    color:white;
+}
+.page3 form ul{
+    display: flex;
+    list-style-type: none;
+}
+.page3 form ul li{
+    width: 50%;
+    padding:10px 0;
+    display: flex;
+}
+.page3 form ul li label{
+    padding-left: 10px;
+    width:100%;
+}
+.page3 form ul li input{
+    width:100%;
+}
+.page3 form button{
+    width:100%;
+    font-size: 100%;
+}
 
 @media (max-width:1080px){
     .page2 .result_list{
@@ -235,6 +300,12 @@ input, select{
         font-size: 150%;
         width: 100%;
     }
+    .report_form{
+        width:100%;
+    }
+    .report_form button{
+        width:100%;
+    }
     .search_box button{
         width: 100%;
         box-shadow: 0 0 5px black;
@@ -249,7 +320,9 @@ input, select{
         letter-spacing: -1px;
     }
     .page2 .result_list{
-        height:250px;
+        width: 100%;
+    }
+    .page2 .result_list form input{
         width: 100%;
     }
     .page2 .result_list ul li{
