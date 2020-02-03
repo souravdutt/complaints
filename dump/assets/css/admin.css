@@ -1,0 +1,162 @@
+/* GLOABALS */
+*{
+    margin:0;padding:0;
+    box-sizing:border-box;
+    font-size: 1.02em;
+    font-family: calibri;
+}
+html{
+    scroll-behavior: smooth;
+}
+.success{
+    background: #94da94;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    color:#124c12;
+    border-radius: 5px;
+    animation: fadeout 1s ease forwards;
+    animation-delay: 3s;
+}
+.error{
+    background: #ffa69f;
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+    color:#b10c00;
+    border-radius: 5px;
+}
+
+a[class="white"]{
+    text-decoration: none;
+    color:white;
+}
+button, input[class="button"], input[type="submit"]{
+    border:0;
+    height: 45px;
+    min-width:100px;
+    padding:10px;
+    font-weight: 600;
+    font-size: 110%;
+    background: #3F51B5;
+    color:white;
+    transition: .5s;
+    cursor: pointer;    
+}
+.button:hover, input[type="submit"]:hover{
+    color:#ffffff;
+    background: #2196F3;    
+}
+input, select{
+    border:0;
+    height: 45px;
+    padding:10px;
+    margin:0;
+    text-transform: capitalize;
+    margin-right: 5px;
+    transition: .5s;
+}
+/* END GLOABALS */
+
+
+
+.container{
+    width:100%;
+    min-height: 600px;
+    padding: 50px 0;
+    background-image: linear-gradient(to bottom right, #3F51B5, #2196F3);
+}
+.intro{
+    position: relative;
+    left: -25%;
+    color:white;
+    font-size: 150%;
+    text-transform: capitalize;
+    text-align: center;
+    width: 150%;
+}
+.container .row{
+    width: 100%;
+    display: flex;
+}
+.container .row .cell{
+    display: block;
+    margin: 0 3px;
+    width:100%;
+}
+.row span{
+    color: white;
+    height: 20px;
+    overflow: hidden;
+}
+.find_center{
+    width:90%;
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+.select_opts .button{
+    box-shadow: 0px 0px 10px black;
+    width: 100%;
+    margin: 10px 0;
+}
+.select_opts select, input{
+    width: 100%;
+    margin: 5px 0;
+}
+
+
+
+@media (max-width:1080px){
+    .page2 .result_list{
+        width:100%;
+    }
+    .container .row{
+        width: 100%;
+        display: block;
+    }
+    .container .row .cell{
+        width: 49%;
+        float: left;
+    }
+
+}
+@media (max-width:720px){
+    .container .row .cell{
+        width: 100%;
+        float: left;
+    }
+    .container{
+        min-height: 650px;
+    }
+    .find_center{
+        width:85%;
+        margin-left:50%;
+        transform: translateX(-50%);
+
+    }
+    .intro{
+        left: 0;
+        font-size: 150%;
+        width: 100%;
+    }
+    .search_box button{
+        width: 100%;
+        box-shadow: 0 0 5px black;
+        margin: 10px 0;
+    }
+    .page2 table td, .page2 table th {
+        max-width: 50px;
+        font-size: 80%;
+        letter-spacing: -1px;
+    }
+    .page2 .result_list{
+        height:250px;
+        width: 100%;
+    }
+    .page2 .result_list ul li{
+        width:50%;
+    }
+}
+
+
+

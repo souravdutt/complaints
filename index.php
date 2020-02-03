@@ -1,6 +1,11 @@
 <?php
     require("includes/header.php");
 ?>
+<?php
+    ini_set('display_errors', true);
+    error_reporting(E_ALL);
+//  var_dump($_POST);
+?>
     <div class="container">
         <div class="find_center">            
             <p class="intro">
@@ -199,6 +204,8 @@
                             ?>
                         />
                     </li>
+                </ul>
+                <ul>
                     <li>
                         <label for="dep_add">Department Address*</label>
                         <input type="text" id="dep_add" name="dep_add" placeholder="Department Address"
@@ -225,6 +232,8 @@
                             ?>
                         />
                     </li>
+                </ul>
+                <ul>
                     <li>
                         <label for="mobile">Your Mobile Number</label>
                         <input type="text" id="mobile" name="visitor_mobile" placeholder="Your Mobile Number"
@@ -238,17 +247,44 @@
                         />
                     </li>
                 </ul>
-                <button type="" id="submit_visitor_req" style="width:49.5%; background:#4caf50;" name="submit_visitor_req">Submit</button>
-                <button type="reset" id="submit_visitor_req" style="width:49.5%;" name="submit_visitor_req">Reset</button>
+                <button type="" id="submit_visitor_req" style="background:#4caf50;" name="submit_visitor_req">Submit</button>
+                <button type="reset" id="submit_visitor_req" name="submit_visitor_req">Reset</button>
             </form>
        </div>
     </div>
 
-
     <script>
-        $(document).ready(function(){
-            $(".report_toggler").click(function(){
+        $(document).ready(function() {
+            $(".report_toggler").click(function() {
                 $(this).siblings(".report_form").slideToggle();
+            });
+            $('.report_form').submit(function(){
+                return false;
+            });
+            $('.issue_btn').click(function() {
+                var issue_msg = '';
+                issue_msg = $(this).siblings('.issue_msg').val();
+                if (issue_msg == '') {
+                    alert("Please enter the Issue!");
+                    $('.issue_msg').focus();
+                } else {
+                    if (confirm("Are you sure want to submit the issue!")) {
+                        var data = $(this).parents('#report_form').serializeArray();
+                        $.post($(".report_form").attr("action"), data, function(info){
+                            $('.report_form').append(info);
+                        });
+                        $(this).siblings('.issue_msg').val('');
+                        $(this).siblings('.founder_email').val('');
+                        alert("Issue submitted successfully!");
+                        $(this).parent('.report_form').slideUp().delay(5000);
+                    } else {
+//                        alert("Please try again, issue has not been submitted.");
+                        return false;
+                    }
+                }
+            });
+            $('.report_form').submit(function(){
+                return false;
             });
         });
     </script>

@@ -34,46 +34,49 @@
                 while($get_data = mysqli_fetch_array($sel_table)){
                     echo '<div class="result_list" id="result_list">
                                 <ul>
-                                    <li>Sr</li>
-                                    <li><input type="text" value="'.$sr.'" disabled></li>
+                                    <li><div class="label">Sr</div></li>
+                                    <li><input type="text" value="'.$sr.'" readonly></li>
                                 </ul>
                                 <ul>
-                                    <li>Department Name</li>
-                                    <li><input type="text" value="'.$get_data['department'].'" disabled></li>
+                                    <li><div class="label">Department Name</div></li>
+                                    <li><input type="text" value="'.$get_data['department'].'" readonly></li>
                                 </ul>
                                 <ul>
-                                    <li>Department Address</li>
-                                    <li><input type="text" style="text-transform:capitalize;" value="'.$get_data['department_add'].', '.$get_data['city'].'" disabled></li>
+                                    <li><div class="label">Department Address</div></li>
+                                    <li><textarea style="text-transform:capitalize;" readonly>'.$get_data['department_add'].', '.$get_data['city'].', District: '.$get_data['distt'].', State: '.$get_data['state'].'</textarea></li>
                                 </ul>
                                 <ul>
-                                    <li>Office Name / Designation</li>
-                                    <li><input type="text" style="text-transform:capitalize;" value="'.$get_data['officer'].'" disabled></li>
+                                    <li><div class="label">Office Name / Designation</div></li>
+                                    <li><textarea style="text-transform:capitalize;" readonly>'.$get_data['officer'].'</textarea></li>
                                 </ul>
                                 <ul>
-                                    <li>Contact Number</li>
-                                    <li><input type="text" value="'.$get_data['mobile'].'" disabled></li>
+                                    <li><div class="label">Contact Number</div></li>
+                                    <li><input type="text" value="'.$get_data['mobile'].'" readonly></li>
                                 </ul>
                                 <ul>
-                                    <li>Email Address</li>
-                                    <li><input type="email" style="text-transform:lowercase;" value="'.$get_data['email'].'" disabled></li>
+                                    <li><div class="label">Email Address</div></li>
+                                    <li><input type="email" style="text-transform:lowercase;" value="'.$get_data['email'].'" readonly></li>
                                 </ul>
                                 <ul>
-                                    <li>Official Websites</li>
-                                    <li><a target="_blank" href="https://'.$get_data['website'].'"><input class="pointer" type="text" value="'.$get_data['website'].'" disabled></a></li>
+                                    <li><div class="label">Official Websites</div></li>
+                                    <li><a target="_blank" href="https://'.$get_data['website'].'"><input class="pointer" type="text" value="'.$get_data['website'].'" readonly></a></li>
                                 </ul>
                                 <ul>
-                                    <li>Social Links</li>
+                                    <li><div class="label">Social Links</div></li>
                                     <li>
                                         <a target="_blank" href="'.$get_data['social_1'].'"><img src="assets/images/icon/fb_logo.png"></a>
                                         <a target="_blank" href="'.$get_data['social_2'].'"><img src="assets/images/icon/twitter_logo.png"></a>
                                         <a target="_blank" href="'.$get_data['social_3'].'"><img src="assets/images/icon/linkedin_logo.png"></a>
                                     </li>
                                 </ul>
-                                <div class="report_toggler" style="text-align:right; padding:10px;"><span style="color:blue;cursor:pointer;text-decoration:underline;">Report</span></div>
-                                <form class="report_form">
-                                    <input type="text" class="issue_msg" placeholder="Enter issue..." style=""/>
-                                    <input type="email" placeholder="Your Email" style=""/>
-                                    <button type="submit" style="">Submit Issue</button>
+                                <div class="report_toggler" style="text-align:right; padding:10px;">
+                                    <div style="color:blue;cursor:pointer;text-decoration:underline;">Report</div>
+                                </div>
+                                <form class="report_form" id="report_form" action="submit_issue.php" method="post">
+                                    <input type="text" class="issue_msg" name="issue_msg" placeholder="Enter issue..." style=""/>
+                                    <input type="text" class="dep_id" value="'.$get_data['id'].'" name="dep_id" hidden>
+                                    <input type="email" class="founder_email" placeholder="Your Email ID (Optional)" name="founder_email" style=""/>
+                                    <button type="button" class="issue_btn" name="issue_btn">Submit Issue</button>
                                 </form>
                             </div>
                             <hr style="width:80%; margin:auto;">';
@@ -84,5 +87,21 @@
             
         }
     }
+//    if(isset($_POST['issue_btn'])){
+//        if(isset($_POST['issue_msg'])){
+//            $issue = $_POST['issue_msg'];
+//            $dep_id = $_POST['dep_id'];
+//            if(!isset($_POST['founder_email']))
+//                $_POST['founder_email'] = '';
+//            $founder_email = $_POST['founder_email'];
+//            $insert_issue_q = "INSERT INTO issues (dep_id, issue, founder_email) VALUES ('$dep_id', '$issue', '$founder_email')";
+//            $isert_issue = mysqli_query($db_conn, $insert_issue_q);
+//            
+//            #submit search result
+//            $_POST['search_result'] = "search";
+//            
+//        }
+
+//    }
 
 ?>
