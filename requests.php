@@ -15,6 +15,7 @@
         <div style="color:white; position:absolute; top:10px; right:20px; font-size:110%; display:felx; float:right">
             <a href="index.php" target="_blank" style="margin: 0 10px; color:white;">Home</a>
             <a href="admin.php" style="margin: 0 10px; color:white;">Add Data</a>
+            <a href="issues.php" style="margin: 0 10px; color:white;">Issues</a>
         </div>
         <div class="find_center">
             <?php
@@ -41,7 +42,7 @@
                 <div class="search_box">
                     <div class="select_opts">
                         <div class="row title_row" style="text-align:center;margin-bottom:10px; font-size:120%">
-                            <div class="cell" style="width:50%;">
+                            <div class="cell_half">
                                 <span>Serial</span>
                             </div>
                             <div class="cell">
@@ -67,7 +68,7 @@
                                     echo '
                                     <form action="requests.php" method="POST">
                                     <div class="row">
-                                        <div class="cell" style="width:50%;">
+                                        <div class="cell_half">
                                             <input type="text" placeholder="sr" name="serial" value="'.$sr.'" style="text-align:center" readonly/>
                                             <input type="number" name="req_id" value="'.$get_data["id"].'" hidden readonly/>
                                         </div>
@@ -83,9 +84,9 @@
                                         <div class="cell">
                                             <input type="text" class="dep_add" name="dep_add" value="'.$get_data["dep_add"].'" readonly/>
                                         </div>
-                                        <div class="cell" style="padding:5px 0;">
-                                            <button type="submit" class="done_btn" name="done_btn" style="width:48.5%;background:#4caf50;">Done</button>
-                                            <button type="button" class="add_btn" name="add_btn" style="width:48.5%;">Add</button>
+                                        <div class="cell_btn" style="padding:5px 0;">
+                                            <button type="submit" class="done_btn btn_half" name="done_btn" style="background:#4caf50;">Done</button>
+                                            <button type="button" class="add_btn btn_half" name="add_btn">Add</button>
                                         </div>
                                     </div>
                                     </form>';

@@ -15,6 +15,7 @@
         <div style="position:absolute; top:10px; right:20px; font-size:120%; ">
             <a href="index.php" target="_blank" style="color:white; margin: 0 10px;">Home</a>
             <a href="requests.php" style="color:white; margin: 0 10px;">Requests</a>
+            <a href="issues.php" style="color:white; margin: 0 10px;">Issues</a>
         </div>
         <div class="find_center">            
             <p class="intro">
@@ -64,6 +65,8 @@
                                     <?php
                                         if(isset($_POST['states']) && $_POST['states'] != '0')
                                             $state = $_POST['states'];
+                                        if(isset($_GET['state']))
+                                            $state = $_GET['state'];
                                     ?>
                                     <option value="0">---Select State---</option>
                                     <?php
@@ -107,6 +110,8 @@
                                     <?php
                                         if(isset($_POST['districts']) && $_POST['districts'] != '0')
                                             $district = $_POST['districts'];
+                                        if(isset($_GET['distt']))
+                                            $district = $_GET['distt'];
                                     ?>
                                     <option value="0">---Select District---</option>
                                     <?php
@@ -140,6 +145,8 @@
                                     <?php
                                         if(isset($_POST['city']))
                                             echo "value=\"".$_POST['city']."\"";
+                                        if(isset($_GET['city']))
+                                            echo "value=\"".$_GET['city']."\"";
                                     ?>
                                 />
                             </div>
@@ -157,6 +164,8 @@
                                     <?php
                                         if(isset($_POST['pincode']))
                                             echo "value=\"".$_POST['pincode']."\"";
+                                        if(isset($_GET['pincode']))
+                                            echo "value=\"".$_GET['pincode']."\"";
                                     ?>
                                 />
                             </div>
@@ -215,6 +224,8 @@
                                     <?php
                                         if(isset($_POST['officer']))
                                             echo "value=\"".$_POST['officer']."\"";
+                                        if(isset($_GET['officer']))
+                                            echo "value=\"".$_GET['officer']."\"";
                                     ?>
                                 />
                             </div>
@@ -224,6 +235,8 @@
                                     <?php
                                         if(isset($_POST['mobile']))
                                             echo "value=\"".$_POST['mobile']."\"";
+                                        if(isset($_GET['mobile']))
+                                            echo "value=\"".$_GET['mobile']."\"";
                                     ?>
                                 />
                             </div>
@@ -241,6 +254,8 @@
                                     <?php
                                         if(isset($_POST['email']))
                                             echo "value=\"".$_POST['email']."\"";
+                                        if(isset($_GET['email']))
+                                            echo "value=\"".$_GET['email']."\"";
                                     ?>
                                 />
                             </div>
@@ -258,6 +273,8 @@
                                     <?php
                                         if(isset($_POST['website']))
                                             echo "value=\"".$_POST['website']."\"";
+                                        if(isset($_GET['website']))
+                                            echo "value=\"".$_GET['website']."\"";
                                     ?>
                                 />
                             </div>
@@ -267,6 +284,8 @@
                                     <?php
                                         if(isset($_POST['link1']))
                                             echo "value=\"".$_POST['link1']."\"";
+                                        if(isset($_GET['link1']))
+                                            echo "value=\"".$_GET['link1']."\"";
                                     ?>
                                 />
                             </div>
@@ -276,6 +295,8 @@
                                     <?php
                                         if(isset($_POST['link2']))
                                             echo "value=\"".$_POST['link2']."\"";
+                                        if(isset($_GET['link2']))
+                                            echo "value=\"".$_GET['link2']."\"";
                                     ?>
                                 />
                             </div>
@@ -285,6 +306,8 @@
                                     <?php
                                         if(isset($_POST['link3']))
                                             echo "value=\"".$_POST['link3']."\"";
+                                        if(isset($_GET['link3']))
+                                            echo "value=\"".$_GET['link3']."\"";
                                     ?>
                                 />
                             </div>
@@ -333,12 +356,21 @@
                         $get_district = mysqli_fetch_array($sel_district_tab);
                         $district_name = $get_district['DistrictName'];
                         
-                        $insert_q = "INSERT INTO `complaint_list`
-                        (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','$website','$link1','$link2','$link3')";
-                        
-                        $insert = mysqli_query($db_conn, $insert_q);
-                        
-                        echo "<div class='success' style='width:100%;'><b>Congrats!</b> Data has been saved successfuly.</div>";
+                        if(isset($_GET['id'])){
+                            $id = $_GET['id'];
+                            $update_q = "UPDATE `complaint_list` SET `city_code`='$pincode',`city`='$city',`department`='$department',`department_add`='$address',`officer`='$officer',`mobile`='$mobile',`email`='$email',`website`='$website',`social_1`='$link1',`social_2`='$link2',`social_3`='$link3' WHERE id='$id'";
+
+                            $update = mysqli_query($db_conn, $update_q);
+                            
+                            echo "<div class='success' style='width:100%;'><b>Congrats!</b> Data has been updated successfuly.</div>";
+                        }
+                        else{
+                            $insert_q = "INSERT INTO `complaint_list`
+                            (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES ('','$country','$country_name','$state','$state_name','$district','$district_name','$pincode','$city','','$department','$address','$officer','$mobile','$email','$website','$link1','$link2','$link3')";
+
+                            $insert = mysqli_query($db_conn, $insert_q);
+                            echo "<div class='success' style='width:100%;'><b>Congrats!</b> Data has been saved successfuly.</div>";
+                        }                    
 
                         $_POST['countries'] = '';
                         $_POST['states'] = '';

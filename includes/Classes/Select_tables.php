@@ -33,14 +33,19 @@
                             </div>';
                 while($get_data = mysqli_fetch_array($sel_table)){
                     echo '<div class="result_list" id="result_list">
-                                <ul>
-                                    <li><div class="label">Sr</div></li>
-                                    <li><input type="text" value="'.$sr.'" readonly></li>
-                                </ul>
-                                <ul>
-                                    <li><div class="label">Department Name</div></li>
-                                    <li><input type="text" value="'.$get_data['department'].'" readonly></li>
-                                </ul>
+                                <div class="list_title">
+                                    '.$sr.'. '.$get_data['department'].', '.$get_data['state'].'
+                                </div>';
+//                    echo'
+//                                <ul>
+//                                    <li><div class="label">Sr</div></li>
+//                                    <li><input type="text" value="'.$sr.'" readonly></li>
+//                                </ul>
+//                                <ul>
+//                                    <li><div class="label">Department Name</div></li>
+//                                    <li><input type="text" value="'.$get_data['department'].'" readonly></li>
+//                                </ul>
+                    echo '
                                 <ul>
                                     <li><div class="label">Department Address</div></li>
                                     <li><textarea style="text-transform:capitalize;" readonly>'.$get_data['department_add'].', '.$get_data['city'].', District: '.$get_data['distt'].', State: '.$get_data['state'].'</textarea></li>
@@ -59,7 +64,7 @@
                                 </ul>
                                 <ul>
                                     <li><div class="label">Official Websites</div></li>
-                                    <li><a target="_blank" href="https://'.$get_data['website'].'"><input class="pointer" type="text" value="'.$get_data['website'].'" readonly></a></li>
+                                    <li><a target="_blank" href="https://'.$get_data['website'].'"><input class="website" class="pointer" type="text" value="'.$get_data['website'].'" readonly></a></li>
                                 </ul>
                                 <ul>
                                     <li><div class="label">Social Links</div></li>
@@ -69,9 +74,8 @@
                                         <a target="_blank" href="'.$get_data['social_3'].'"><img src="assets/images/icon/linkedin_logo.png"></a>
                                     </li>
                                 </ul>
-                                <div class="report_toggler" style="text-align:right; padding:10px;">
-                                    <div style="color:blue;cursor:pointer;text-decoration:underline;">Report</div>
-                                </div>
+                                <br>
+                                    <div class="report_toggler" style="">Report</div>
                                 <form class="report_form" id="report_form" action="submit_issue.php" method="post">
                                     <input type="text" class="issue_msg" name="issue_msg" placeholder="Enter issue..." style=""/>
                                     <input type="text" class="dep_id" value="'.$get_data['id'].'" name="dep_id" hidden>

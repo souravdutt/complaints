@@ -82,10 +82,15 @@ input[type='email']{
     width: 100%;
     display: flex;
 }
-.container .row .cell{
+.container .row .cell, .select_opts .cell_btn{
     display: block;
     margin: 0 3px;
-    width:100%;
+    width: 100%;
+}
+.container .row .cell_half{
+    display: block;
+    margin: 0 3px;
+    width: 48%;
 }
 .row span{
     color: white;
@@ -102,14 +107,16 @@ input[type='email']{
     width: 100%;
     margin: 10px 0;
 }
+.select_opts .btn_half{
+    float: left;
+    width: 47%;
+}
 .select_opts select, input{
     width: 100%;
     margin: 5px 0;
 }
 
-
-
-@media (max-width:1080px){
+@media (max-width:1380px){
     .page2 .result_list{
         width:100%;
     }
@@ -117,14 +124,21 @@ input[type='email']{
         width: 100%;
         display: block;
     }
-    .container .row .cell{
+    .container .row .cell, .container .row .cell_half{
         width: 49%;
         float: left;
     }
     .search_box .title_row{
         display:none;
     }
-
+    .select_opts .cell_btn{
+        width: 100%;
+    }
+    .select_opts .btn_half{
+        display: block;
+        float: left;
+        width: 98.5%;
+    }
 }
 @media (max-width:720px){
     .container .row .cell{
@@ -161,6 +175,9 @@ input[type='email']{
     }
     .page2 .result_list ul li{
         width:50%;
+    }
+    .container .row .cell_half, .select_opts .btn_half{
+        width: 100%;
     }
 }
 

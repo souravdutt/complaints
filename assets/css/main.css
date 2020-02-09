@@ -1,69 +1,85 @@
 /* GLOABALS */
-*{
-    margin:0;padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-size: 1.02em;
     font-family: calibri;
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
-a[class="white"]{
+
+a[class="white"] {
     text-decoration: none;
-    color:white;
+    color: white;
 }
-button, input[class="button"], input[type="submit"]{
-    border:0;
+
+button,
+input[class="button"],
+input[type="submit"] {
+    border: 0;
     height: 45px;
-    min-width:100px;
-    padding:10px;
+    min-width: 100px;
+    padding: 10px;
     font-weight: 600;
     font-size: 110%;
     background: #3F51B5;
-    color:white;
+    color: white;
     transition: .5s;
-    cursor: pointer;    
-}
-.button:hover, input[type="submit"]:hover, button:hover{
-    color:#ffffff;
-    background: #2196F3;    
-    border: 1px solid white;
-}
-.pointer{
     cursor: pointer;
 }
-input, select{
-    border:0;
+
+.button:hover,
+input[type="submit"]:hover,
+button:hover {
+    color: #ffffff;
+    background: #2196F3;
+    border: 1px solid white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+input,
+select {
+    border: 0;
     height: 45px;
-    padding:10px;
-    margin:0;
+    padding: 10px;
+    margin: 0;
     text-transform: capitalize;
     margin-right: 5px;
     transition: .5s;
 
 }
-input[type="email"]{
+
+input[type="email"] {
     text-transform: lowercase;
 }
+
 /* END GLOABALS */
 
 
 
-.container{
-    width:100%;
+.container {
+    width: 100%;
     padding: 100px 0;
     background: black linear-gradient(to bottom right, #3F51B5, #2196F3);
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
-.intro{
+
+.intro {
     position: relative;
     left: -25%;
-    color:white;
+    color: white;
     font-size: 150%;
     text-transform: capitalize;
     text-align: center;
     width: 150%;
 }
+
 /*
 .search_box{
     position: relative;
@@ -78,36 +94,44 @@ input[type="email"]{
     box-shadow: 0px 0px 100px black;
 }
 */
-.find_center{
-    width:50%;
-    margin-left:50%;
+.find_center {
+    width: 50%;
+    margin-left: 50%;
     transform: translateX(-50%);
-    
+
 }
-.search_box{
-    width:100%;
+
+.search_box {
+    width: 100%;
 }
-.search_box .white_bg{
+
+.search_box .white_bg {
     background: white;
 }
-.search_box input[type="text"]{
-    width:100%;
+
+.search_box input[type="text"] {
+    width: 100%;
 }
-.search_box input[type="text"]:hover, .search_box input[type="text"]:focus{
+
+.search_box input[type="text"]:hover,
+.search_box input[type="text"]:focus {
     font-size: 120%;
 }
-.search_box .button{
+
+.search_box .button {
     float: right;
-    margin:0;
-    width:100%;
+    margin: 0;
+    width: 100%;
 }
-.or{
+
+.or {
     display: block;
-    color:white;
+    color: white;
     text-align: center;
     font-size: 150%;
     font-weight: 500;
 }
+
 /*
 .search_box2{
     position: relative;
@@ -120,87 +144,122 @@ input[type="email"]{
     transition: .5s;
 }
 */
-.search_box2 select,.search_box2 .button{
-    width:100%;
+.search_box2 select,
+.search_box2 .button {
+    width: 100%;
     margin: 5px 0;
     cursor: pointer;
 }
-.select_opts .button{
+
+.select_opts .button {
     box-shadow: 0px 0px 10px black;
     width: 100%;
     margin: 10px 0;
 }
-.select_opts select{
+
+.select_opts select {
     width: 100%;
     margin: 5px 0;
 }
-.result_list img{
-    width: 22px;
-    height: 22px;
-    margin-top: 15px;
+
+.result_list img {
+    width: 30px;
+    height: 30px;
+    margin-top: 8px;
     margin-right: 10px;
     z-index: 99;
-    background: white;
+    background: transparent;
+    transition: .5s;
 }
-.page2{
+
+.result_list img:hover {
+    box-shadow: 1px 1px 10px black;
+    transform: scale(1.08, 1.08);
+}
+
+.result_list .website:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: alias;
+    font-size: 110%;
+}
+
+.page2 {
     min-height: 80vh;
-    background-color:#e9e9e9;
-    color:black;
+    background-color: #e9e9e9;
+    color: black;
     padding: 20px 5%;
 }
-.result_found{
+
+.result_found {
     background: #94da94;
     padding: 10px;
     width: 80%;
     margin: auto;
-    color:#124c12;
+    color: #124c12;
     border-radius: 5px;
     animation: fadeout 1s ease forwards;
     animation-delay: 3s;
 }
-.result_not_found{
+
+.result_not_found {
     background: #ffa69f;
     padding: 10px;
     width: 80%;
     margin: auto;
-    color:#b10c00;
+    color: #b10c00;
     border-radius: 5px;
     animation: fadeout 1s ease forwards;
     animation-delay: 10s;
 }
-@keyframes fadeout{
-    from{
+
+@keyframes fadeout {
+    from {
         opacity: 1;
         height: 40px;
     }
-    to{
+
+    to {
         opacity: 0;
         height: 0px;
         padding: 0;
     }
 }
-.page2 .result_list{
+
+.page2 .result_list {
     width: 80%;
     margin: 10px auto;
     background: white linear-gradient(to bottom right, #3F51B5, #2196F3);
-/*    background: linear-gradient(to top left, #3b9eff, #df69df);*/
+    /*    background: linear-gradient(to top left, #3b9eff, #df69df);*/
 }
-.page2 .result_list ul li{
+
+.list_title{
+    color:white;
+    font-weight: 600;
+    font-size: 180%;
+    letter-spacing: 1px;
+    padding: 0 8px;
+    text-transform: uppercase;
+}
+
+.page2 .result_list ul li {
     list-style-type: none;
     float: left;
-    width:25%;
+    width: 25%;
     overflow: hidden;
     height: 50px;
     padding: 0 8px;
     padding-top: 8px;
 }
-.page2 .result_list ul .label{
+
+.page2 .result_list ul .label {
     color: white;
-    padding: 12px 0;
+    padding: 10px 0;
     width: 100%;
     height: 100%;
 }
-.page2 .result_list ul textarea{
+
+.page2 .result_list ul textarea {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
@@ -210,158 +269,208 @@ input[type="email"]{
     min-height: 100%;
     padding: 0 8px;
 }
-.page2 .result_list ul img{
-    
-}
-.page2 .result_list ul input{
+
+.page2 .result_list ul input {
     text-transform: none;
     width: 100%;
     height: 100%;
     padding: 0 8px;
     font-weight: 500;
-    color:black;
-    width:100%;
-}
-.page2 table{
+    color: black;
     width: 100%;
 }
-.page2 table th{
+
+.page2 table {
+    width: 100%;
+}
+
+.page2 table th {
     text-transform: uppercase;
     font-size: 80%;
-}.page2 table th, .page2 table td{
+}
+
+.page2 table th,
+.page2 table td {
     border: 1px solid black;
     text-align: center;
     padding: 2px 5px;
-    margin:0;
+    margin: 0;
 }
-.page2 table td{
-    margin:0;
+
+.page2 table td {
+    margin: 0;
     font-size: 90%;
 }
-.report_form{
-    width:101%;
+
+.report_toggler {
+    margin-left: 91%;
+    margin-top: 130px;
+    text-align: right;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: .5s;
+    padding-right: 25px;
+}
+
+.report_toggler:hover {
+    color: blue;
+    transform: scale(1.1, 1.1);
+}
+
+.report_form {
+    width: 101%;
     display: none;
     padding: 5px;
 }
-.report_form input:first-child{
+
+.report_form input:first-child {
     width: 43%;
 }
-.report_form input{
+
+.report_form input {
     margin: 5px 0;
     height: 40px;
     width: 28%;
 }
-.report_form button{
+
+.report_form button {
     width: 27%;
-    height:40px;
+    height: 40px;
     padding: 0px;
 }
 
 
-.page3{
+.page3 {
     width: 100%;
     text-transform: capitalize;
-    background:floralwhite;
+    background: floralwhite;
 }
-.page3 .container_page3{
+
+.page3 .container_page3 {
     width: 80%;
     margin: auto;
     padding: 20px;
-    background:floralwhite;
+    background: floralwhite;
     text-align: justify;
 }
-.page3 span, .page3 h1{
+
+.page3 span,
+.page3 h1 {
     font-size: 150%;
 }
-.page3 form{
+
+.page3 form {
     width: 100%;
     font-size: 120%;
     padding: 20px;
     display: block;
     background: white linear-gradient(to bottom right, #3F51B5, #2196F3);
-    color:white;
+    color: white;
 }
-.page3 form ul{
+
+.page3 form ul {
     list-style-type: none;
 }
-.page3 form ul li{
+
+.page3 form ul li {
     text-align: left;
     width: 49%;
     margin: 0 3px;
-    padding:10px 0;
+    padding: 10px 0;
     float: left;
     display: flex;
 }
-.page3 form ul li label{
+
+.page3 form ul li label {
     padding-left: 10px;
-    width:100%;
+    width: 100%;
 }
-.page3 form ul li input{
-    width:100%;
+
+.page3 form ul li input {
+    width: 100%;
 }
-.page3 form button{
-    width:49.5%;
+
+.page3 form button {
+    width: 49.5%;
     font-size: 100%;
 }
 
-@media (max-width:1080px){
-    .page2 .result_list{
-        width:100%;
+@media (max-width:1080px) {
+    .page2 .result_list {
+        width: 100%;
     }
-    .page3 form ul li{
-        width:100%;
+
+    .page3 form ul li {
+        width: 100%;
     }
 
 }
-@media (max-width:720px){
-    .container{
+
+@media (max-width:720px) {
+    .container {
         min-height: 650px;
     }
-    .find_center{
-        width:85%;
-        margin-left:50%;
+
+    .find_center {
+        width: 85%;
+        margin-left: 50%;
         transform: translateX(-50%);
 
     }
-    .intro{
+
+    .intro {
         left: 0;
         font-size: 150%;
         width: 100%;
     }
-    .report_form{
-        width:100%;
+
+    .report_form {
+        width: 100%;
     }
-    .report_form button{
-        width:100%;
+
+    .report_form button {
+        width: 100%;
     }
-    .search_box button{
+
+    .search_box button {
         width: 100%;
         box-shadow: 0 0 5px black;
         margin: 10px 0;
     }
-    .page2 .result_found, .page2 .result_not_found{
+
+    .page2 .result_found,
+    .page2 .result_not_found {
         width: 100%;
     }
-    .page2 table td, .page2 table th {
+
+    .page2 table td,
+    .page2 table th {
         max-width: 50px;
         font-size: 80%;
         letter-spacing: -1px;
     }
-    .page2 .result_list{
+
+    .page2 .result_list {
         width: 100%;
     }
-    .page2 .result_list form input{
+
+    .page2 .result_list form input {
         width: 100%;
     }
-    .page2 .result_list ul li{
-        width:50%;
+
+    .page2 .result_list ul li {
+        width: 50%;
     }
-    .page3 form button{
-        width:100%;
+
+    .page3 form button {
+        width: 100%;
         margin: 5px 0;
     }
 
+    .report_toggler {
+        margin-top: 280px;
+        margin-left: 85%;
+    }
 }
-
-
-
