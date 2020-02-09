@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2020 at 12:24 PM
+-- Generation Time: Feb 09, 2020 at 11:37 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -55,7 +55,7 @@ CREATE TABLE `complaint_list` (
 --
 
 INSERT INTO `complaint_list` (`id`, `country_code`, `country`, `state_code`, `state`, `distt_code`, `distt`, `city_code`, `city`, `department_code`, `department`, `department_add`, `officer`, `mobile`, `email`, `website`, `social_1`, `social_2`, `social_3`) VALUES
-(14, 91, 'india', 32, 'Telangana', 530, 'Hyderabad', 500084, 'Kondapur', 0, 'google', 'Survey No. 13, DivyaSree Omega, Kondapur Village', 'n.a.', '4066193000', 'info@google.com', 'www.google.co.in', 'https://www.facebook.com/Googleindia', 'https://twitter.com/googleindia', 'https://in.linkedin.com/company/google'),
+(14, 91, 'india', 32, 'Telangana', 530, 'Hyderabad', 500084, 'Kondapur', 0, 'google', 'Survey No. 13, DivyaSree Omega, Kondapur Village', 'Tahir ali', '4066193000', 'info@google.com', 'www.google.co.in', 'https://www.facebook.com/Googleindia', 'https://twitter.com/googleindia', 'https://in.linkedin.com/company/google'),
 (15, 91, 'india', 35, 'Uttar Pradesh', 575, 'Gorakhpur', 273009, 'gorakhpur', 0, 'EPF Sub Regional Office', 'Opposite Carmel Girls School, Civil lines, Labour ', 'n.a.', '5512200603', 'sro.gorakhpur@epfindia.gov.in', 'epfindia.gov.in', 'https://www.facebook.com/socialepfo/', 'https://twitter.com/socialepfo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor', 'https://www.linkedin.com/company/employee%27s-provident-fund-organisation');
 
 -- --------------------------------------------------------
@@ -754,8 +754,18 @@ CREATE TABLE `issues` (
   `id` int(11) NOT NULL,
   `dep_id` int(11) NOT NULL,
   `issue` varchar(100) NOT NULL,
-  `founder_email` varchar(40) NOT NULL
+  `founder_email` varchar(40) NOT NULL,
+  `issue_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `issues`
+--
+
+INSERT INTO `issues` (`id`, `dep_id`, `issue`, `founder_email`, `issue_status`) VALUES
+(1, 14, 'mobile number not found', 'sdutt12139@gmail.com', 0),
+(2, 15, 'address is incorrect', 'sro.gorakhpur@epfindia.gov.in', 0),
+(3, 15, 'mobile number changed', 'luckydutt0@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -826,6 +836,13 @@ CREATE TABLE `visitor_requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `visitor_requests`
+--
+
+INSERT INTO `visitor_requests` (`id`, `dep_name`, `dep_add`, `visitor_email`, `visitor_mobile`, `request_status`) VALUES
+(1, 'sdpp school', 'malerkotla', 'sdutt12139@gmail.com', '7355012139', 0);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -892,7 +909,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `issues`
 --
 ALTER TABLE `issues`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -904,7 +921,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `visitor_requests`
 --
 ALTER TABLE `visitor_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
