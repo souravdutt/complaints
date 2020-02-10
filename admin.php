@@ -70,7 +70,7 @@
                                     ?>
                                     <option value="0">---Select State---</option>
                                     <?php
-                                        if($get_state_row > 1){
+                                        if($get_state_row > 0){
                                             while($get_state = mysqli_fetch_array($sel_state_tab)){
                                                 echo "<option value='".$get_state['StCode']."'";
                                                 if(isset($state) && $state == $get_state['StCode']) echo "selected";
@@ -115,7 +115,7 @@
                                     ?>
                                     <option value="0">---Select District---</option>
                                     <?php
-                                        if($get_dist_row > 1 && isset($state)){
+                                        if($get_dist_row > 0 && isset($state)){
                                             while($get_dist = mysqli_fetch_array($sel_dist_tab)){
                                                 echo "<option value='".$get_dist['DistCode']."'";
                                                 if(isset($district) && $district == $get_dist['DistCode']) echo "selected";
