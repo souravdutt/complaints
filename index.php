@@ -258,8 +258,11 @@
             $(".report_toggler").click(function() {
                 $(this).siblings(".report_form").slideToggle();
             });
-            $('.report_form').submit(function(){
-                return false;
+            $(".comments_toggler").click(function() {
+                $(this).siblings(".comment_section").slideToggle();
+            });
+            $(".add_com_toggler").click(function() {
+                $(this).siblings(".new_comment_sec").slideToggle();
             });
             $('.issue_btn').click(function() {
                 var issue_msg = '';
@@ -269,8 +272,8 @@
                     $('.issue_msg').focus();
                 } else {
                     if (confirm("Are you sure want to submit the issue!")) {
-                        var data = $(this).parents('#report_form').serializeArray();
-                        $.post($(".report_form").attr("action"), data, function(info){
+                        var data = $(this).parent('.report_form').serializeArray();
+                        $.post($("#report_form").attr("action"), data, function(info){
                             $('.report_form').append(info);
                         });
                         $(this).siblings('.issue_msg').val('');
@@ -286,5 +289,40 @@
             $('.report_form').submit(function(){
                 return false;
             });
+            $('.submit_comment').click(function(){
+                var name = '';
+                var comment = '';
+                name = $(this).siblings('ul').children('li').children('.commentator_name').val();
+                comment = $(this).siblings('#comment_text').val();
+                if (name == '') {
+                    alert("Please enter your Name.");
+                    $('.commentator_name').focus();
+                }
+                else if (comment == '') {
+                    alert("Please enter the Comment!");
+                    $('#comment_text').focus();
+                } else {
+                    if (confirm("Are you sure want to submit the comment!")) {
+                        var data = $(this).parents('#comment_form').serializeArray();
+                        $.post($(".comment_form").attr("action"), data, function(info){
+                            $('.comment_form').append(info);
+                        });
+                        $(this).parents('.comment_form').prepend('<div class="prev_comments"> <span class="prev_com_name">'+name+'</span><span class="prev_com_time"> ( few time ago )</span><br><div class="prev_comment_text">- '+comment+'</div></div>')
+                        $(this).siblings('.comment_text').val('');
+                        $(this).siblings('ul').children('li').children('.commentator_name').val('')
+                        $(this).siblings('ul').children('li').children('.commentator_email').val('')
+                        alert("Congrats! Comment has been submitted Successfully.");
+
+                        $(this).parents('.new_comment_sec').slideUp();
+                    } else {
+//                        alert("Please try again, issue has not been submitted.");
+                        return false;
+                    }
+                }
+            });
+            $('.comment_form').submit(function(){
+                return false;
+            });
+            
         });
     </script>

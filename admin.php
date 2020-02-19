@@ -231,7 +231,7 @@
                             </div>
                             <div class="cell">
                                 <span>Mobile*</span>
-                                <input type="tel" placeholder="Mobile Number" minlength="3" name="mobile" minlength="10" maxlength="10"
+                                <input type="tel" placeholder="Mobile Number" minlength="3" name="mobile" minlength="6" maxlength="12"
                                     <?php
                                         if(isset($_POST['mobile']))
                                             echo "value=\"".$_POST['mobile']."\"";

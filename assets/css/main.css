@@ -233,8 +233,8 @@ input[type="email"] {
     /*    background: linear-gradient(to top left, #3b9eff, #df69df);*/
 }
 
-.list_title{
-    color:white;
+.list_title {
+    color: white;
     font-weight: 600;
     font-size: 180%;
     letter-spacing: 1px;
@@ -302,21 +302,18 @@ input[type="email"] {
     font-size: 90%;
 }
 
-.report_toggler {
-    margin-left: 91%;
-    margin-top: 130px;
+.togglers {
+    display: inline-flex;
     text-align: right;
     color: white;
     padding: 10px;
     cursor: pointer;
     text-decoration: underline;
     transition: .5s;
-    padding-right: 25px;
 }
 
-.report_toggler:hover {
+.togglers:hover {
     color: blue;
-    transform: scale(1.1, 1.1);
 }
 
 .report_form {
@@ -341,7 +338,82 @@ input[type="email"] {
     padding: 0px;
 }
 
+.comment_section {
+    display: none;
+}
 
+.prev_comments {
+    padding: 10px;
+}
+
+.prev_com_name {
+    font-weight: 600;
+    font-size: 130%;
+    color:white;
+    text-transform: capitalize;
+}
+
+.prev_com_time{
+    font-size: 90%;
+    font-weight: 600;
+    color: lightgray;
+}
+
+.comment_section .prev_comment{
+    padding: 5px;
+    border: 1px solid white;
+}
+
+.comment_section .prev_comment_text{
+    width:100%;
+    min-height: 50px;
+    background: #77afef linear-gradient(to bottom right, #77afef, #77afef, #c8def7);
+    padding: 5px;
+    font-style: italic;
+    border-radius: 0 10px 0px 10px;
+}
+
+.new_comment_sec{
+    padding: 10px;
+    display: none;
+}
+
+.new_comment_sec ul li{
+    width: 100%;
+    color: white;
+}
+
+.comment_section .title{
+    color:white;
+    font-weight: 600;
+    font-size: 120%;
+    padding-left: 5px;
+}
+
+.new_comment_sec .commentator_name, .commentator_email{
+    width: 100%;
+    max-height: 30px;
+}
+
+.add_com_toggler{
+
+}
+
+.add_comment{
+    width:100%;
+    max-width:100%;
+    min-width:100%;
+    min-height:50px;
+    max-height:150px;
+    padding: 2px 10px;
+    font-style: italic;
+}
+.new_comment_sec button{
+    width: 100%;
+    margin: 5px 0;
+    position: relative;
+    
+}
 .page3 {
     width: 100%;
     text-transform: capitalize;
@@ -469,8 +541,7 @@ input[type="email"] {
         margin: 5px 0;
     }
 
-    .report_toggler {
-        margin-top: 280px;
-        margin-left: 85%;
+    .togglers {
+        text-align: right;
     }
 }
